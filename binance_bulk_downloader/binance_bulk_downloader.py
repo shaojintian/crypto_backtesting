@@ -310,7 +310,7 @@ class BinanceBulkDownloader:
         # 将csv文件转换为parquet文件
         print(f"[bold blue]Converting {csv_destination_path} to parquet[/bold blue]")
         df = pl.read_csv(csv_destination_path)
-        df.to_parquet(csv_destination_path.replace(".csv", ".parquet"))
+        df.write_parquet(csv_destination_path.replace(".csv", ".parquet"))
         print(f"[green]Converted: {csv_destination_path}[/green]")
 
 

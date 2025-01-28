@@ -1,4 +1,4 @@
-#!/Users/shaoenzo/Documents/GitHub/crypto_backtesting/venv/bin/python3
+#!/Users/shaoenzo/Documents/GitHub/crypto_backtesting/venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys
