@@ -9,6 +9,8 @@ crypto_backtesting framework based on polars, parquet and bulk_downloader
 
 ---
 
+brew install python-freethreading # 安装no gil
+
 ## **2. 架构设计**
 
 ### **2.1 核心模块**
