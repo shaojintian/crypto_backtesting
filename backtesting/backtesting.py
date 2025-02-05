@@ -24,6 +24,8 @@ from typing import Callable, Dict, List, Optional, Sequence, Tuple, Type, Union
 import numpy as np
 import pandas as pd
 from numpy.random import default_rng
+import asyncio 
+import uvloop
 
 try:
     from tqdm.auto import tqdm as _tqdm
@@ -1718,3 +1720,94 @@ class Backtest:
             reverse_indicators=reverse_indicators,
             show_legend=show_legend,
             open_browser=open_browser)
+    
+
+class BacktestV2:
+    """
+    Backtest a particular (parameterized) strategy on multiple data sources.
+
+    Upon initialization, call method `Backtest.run` to run a backtest instance,
+    or `Backtest.optimize` to optimize it.
+    """
+    def __init__(self,
+                 data_sources: List[pd.DataFrame],
+                 strategy: Type[Strategy],
+                 *,
+                 cash: float = 10_000,
+                 spread: float = .0,
+                 commission: Union[float, Tuple[float, float]] = .0,
+                 margin: float = 1.,
+                 trade_on_close: bool = False,
+                 hedging: bool = False,
+                 exclusive_orders: bool = False
+                 ):
+        """
+        Initialize a backtest with multiple data sources.
+
+        `data_sources` is a list of `pd.DataFrame` objects, each with columns:
+        `Open`, `High`, `Low`, `Close`, and (optionally) `Volume`.
+
+        `strategy` is a `backtesting.backtesting.Strategy` _subclass_ (not an instance).
+
+        Other parameters are the same as in the single-data-source version.
+        """
+        self._data_sources = data_sources
+        self._strategy = strategy
+        self._cash = cash
+        self._spread = spread
+        self._commission = commission
+        self._margin = margin
+        self._trade_on_close = trade_on_close
+        self._hedging = hedging
+        self._exclusive_orders = exclusive_orders
+        self._results = None
+
+    async def _run_backtest(self, data: pd.DataFrame) -> pd.Series:
+        """
+        Run backtest on a single data source.
+        """
+        # Validate and preprocess data
+        if not isinstance(data, pd.DataFrame):
+            raise TypeError("`data` must be a pandas.DataFrame with columns")
+        if len(data.columns.intersection({'Open', 'High', 'Low', 'Close', 'Volume'})) != 5:
+            raise ValueError("`data` must be a pandas.DataFrame with columns "
+                             "'Open', 'High', 'Low', 'Close', and (optionally) 'Volume'")
+        if data[['Open', 'High', 'Low', 'Close']].isnull().values.any():
+            raise ValueError('Some OHLC values are missing (NaN). '
+                             'Please strip those lines with `df.dropna()` or '
+                             'fill them in with `df.interpolate()` or whatever.')
+
+        # Initialize broker and strategy
+        broker = _Broker(
+            cash=self._cash,
+            spread=self._spread,
+            commission=self._commission,
+            margin=self._margin,
+            trade_on_close=self._trade_on_close,
+            hedging=self._hedging,
+            exclusive_orders=self._exclusive_orders,
+            index=data.index
+        )
+        strategy_instance = self._strategy(broker=broker, data=data)
+
+        # Run strategy logic (this is a placeholder, actual implementation may vary)
+        await strategy_instance.run()
+
+        # Return results (this is a placeholder, actual implementation may vary)
+        return strategy_instance.results
+
+    async def run(self):
+        """
+        Run backtest on all data sources concurrently.
+        """
+        tasks = [self._run_backtest(data) for data in self._data_sources]
+        results = await asyncio.gather(*tasks)
+        self._results = pd.concat(results, axis=1)  # Concatenate results from all data sources
+        return self._results
+
+    async def optimize(self):
+        """
+        Optimize strategy parameters on all data sources concurrently.
+        """
+        # Placeholder for optimization logic
+        pass

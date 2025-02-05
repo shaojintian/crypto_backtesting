@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
-from backtesting import Backtest, Strategy
+from backtesting import Backtest, Strategy, BacktestV2
 from backtesting._stats import compute_drawdown_duration_peaks
 from backtesting._util import _Array, _as_str, _Indicator, try_
 from backtesting.lib import (
@@ -73,10 +73,18 @@ class SmaCross(Strategy):
             self.sell()
 
 
+
+class TestBacktestV2(TestCase):
+    def test_run(self):
+        datasources = [EURUSD, GOOG]
+        bt = BacktestV2(datasources, SmaCross)
+        bt.run()
+
 class TestBacktest(TestCase):
     def test_run(self):
         bt = Backtest(EURUSD, SmaCross)
         bt.run()
+    
 
     def test_run_invalid_param(self):
         bt = Backtest(GOOG, SmaCross)
