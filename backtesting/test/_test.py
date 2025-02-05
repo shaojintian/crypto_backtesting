@@ -11,6 +11,8 @@ from runpy import run_path
 from tempfile import NamedTemporaryFile, gettempdir
 from unittest import TestCase
 from unittest.mock import patch
+from unittest import IsolatedAsyncioTestCase
+import asyncio
 
 import numpy as np
 import pandas as pd
@@ -32,7 +34,7 @@ from backtesting.lib import (
     random_ohlc_data,
     resample_apply,
 )
-from backtesting.test import EURUSD, GOOG, SMA
+from backtesting.test import EURUSD, GOOG, SMA, _1INCHUSD, _1000cheems
 
 SHORT_DATA = GOOG.iloc[:20]  # Short data for fast tests with no indicator lag
 
@@ -72,19 +74,46 @@ class SmaCross(Strategy):
             self.position.close()
             self.sell()
 
+class VolumesPumping(Strategy):
+    def init(self):
+        return super().init()
+
+    def next(self):
+        # 确保有足够的数据进行计算
+        if len(self.data.Volume) < 101:
+            return
+
+        # 计算当前成交额与之前100个窗口的成交额之比
+        current_volume = self.data.Volume[-1]
+        average_volume = self.data.Volume[-101:-1].mean()
+        volume_factor = current_volume / average_volume
+
+        # 如果当前成交额是之前100个窗口的100倍
+        if volume_factor >= 100:
+            self.buy(size=1)  # 或者执行其他交易操作
 
 
-class TestBacktestV2(TestCase):
-    def test_run(self):
-        datasources = [EURUSD, GOOG]
-        bt = BacktestV2(datasources, SmaCross)
-        bt.run()
+class TestBacktestV2(IsolatedAsyncioTestCase):
+   async def test_run(self):
+        datasources = [_1INCHUSD, _1000cheems]
+        bt = BacktestV2(datasources, VolumesPumping)
+        results = await bt.run()
+        print(results)
+        import backtesting._plotting
+        with _tempfile() as f, \
+                patch.object(backtesting._plotting, '_MAX_CANDLES', 1000), \
+                self.assertWarns(UserWarning):
+            bt.plot(filename=f, resample=True)
 
 class TestBacktest(TestCase):
     def test_run(self):
-        bt = Backtest(EURUSD, SmaCross)
-        bt.run()
-    
+        bt = Backtest(_1INCHUSD, SmaCross)
+        print(bt.run())
+        import backtesting._plotting
+        with _tempfile() as f, \
+                patch.object(backtesting._plotting, '_MAX_CANDLES', 1000), \
+                self.assertWarns(UserWarning):
+            bt.plot(filename=f, resample=True)
 
     def test_run_invalid_param(self):
         bt = Backtest(GOOG, SmaCross)
@@ -663,21 +692,28 @@ class TestPlot(TestCase):
         bt = Backtest(GOOG, SmaCross)
         self.assertRaises(RuntimeError, bt.plot)
 
+    def test_plot(self):
+        bt = Backtest(GOOG, SmaCross)
+        bt.run()
+        with _tempfile() as f:
+            bt.plot(filename=f, open_browser=True)
+            time.sleep(1)
+
     def test_file_size(self):
         bt = Backtest(GOOG, SmaCross)
         bt.run()
         with _tempfile() as f:
-            bt.plot(filename=f[:-len('.html')], open_browser=False)
+            bt.plot(filename=f[:-len('.html')], open_browser=True)
             self.assertLess(os.path.getsize(f), 500000)
 
     def test_params(self):
         bt = Backtest(GOOG.iloc[:100], SmaCross)
         bt.run()
         with _tempfile() as f:
-            for p in dict(plot_volume=False,  # noqa: C408
-                          plot_equity=False,
+            for p in dict(plot_volume=True,  # noqa: C408
+                          plot_equity=True,
                           plot_return=True,
-                          plot_pl=False,
+                          plot_pl=True,
                           plot_drawdown=True,
                           plot_trades=False,
                           superimpose=False,
@@ -687,7 +723,7 @@ class TestPlot(TestCase):
                           reverse_indicators=True,
                           show_legend=False).items():
                 with self.subTest(param=p[0]):
-                    bt.plot(**dict([p]), filename=f, open_browser=False)
+                    bt.plot(**dict([p]), filename=f, open_browser=True)
 
     def test_hide_legend(self):
         bt = Backtest(GOOG.iloc[:100], SmaCross)

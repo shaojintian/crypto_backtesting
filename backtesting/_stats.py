@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Union
+from typing import TYPE_CHECKING, List, Union,Dict
 
 import numpy as np
 import pandas as pd
@@ -39,7 +39,7 @@ def compute_stats(
         equity: np.ndarray,
         ohlc_data: pd.DataFrame,
         strategy_instance: 'Strategy',
-        risk_free_rate: float = 0,
+        risk_free_rate: float = 0.03,
 ) -> pd.Series:
     assert -1 < risk_free_rate < 1
 
@@ -180,3 +180,110 @@ class _Stats(pd.Series):
             # 'format.na_rep', '--',  # TODO: Enable once it works
         ):
             return super().__repr__()
+
+
+# 多品种回测
+def compute_stats_v2(
+        trades: Dict[str, Union[List['Trade'], pd.DataFrame]],
+        equity: Dict[str, np.ndarray],
+        ohlc_data: Dict[str, pd.DataFrame],
+        strategy_instance: Dict[str, 'Strategy'],
+        risk_free_rate: float = 0.03,
+) -> pd.Series:
+    combined_trades = []
+    combined_equity = []
+    combined_ohlc = []
+    for symbol in trades.keys():
+        combined_trades.append(trades[symbol])
+        combined_equity.append(pd.Series(equity[symbol], index=ohlc_data[symbol].index))
+        combined_ohlc.append(ohlc_data[symbol])
+
+    combined_trades_df = pd.concat(combined_trades)
+    combined_equity_series = pd.concat(combined_equity).sort_index()
+    combined_ohlc_df = pd.concat(combined_ohlc).sort_index()
+    #
+    index = combined_ohlc_df.index
+    equity = combined_equity_series.values
+    dd = 1 - equity / np.maximum.accumulate(equity)
+    dd_dur, dd_peaks = compute_drawdown_duration_peaks(pd.Series(dd, index=index))
+
+    equity_df = pd.DataFrame({
+        'Equity': equity,
+        'DrawdownPct': dd,
+        'DrawdownDuration': dd_dur},
+        index=index)
+
+    trades_df = combined_trades_df
+    trades_df['Duration'] = trades_df['ExitTime'] - trades_df['EntryTime']
+
+    pl = trades_df['PnL']
+    returns = trades_df['ReturnPct']
+    durations = trades_df['Duration']
+
+    def _round_timedelta(value, _period=_data_period(index)):
+        if not isinstance(value, pd.Timedelta):
+            return value
+        resolution = getattr(_period, 'resolution_string', None) or _period.resolution
+        return value.ceil(resolution)
+    
+    s = pd.Series(dtype=object)
+    s.loc['Start'] = index[0]
+    s.loc['End'] = index[-1]
+    s.loc['Duration'] = s.End - s.Start
+
+    have_position = np.repeat(0, len(index))
+    for t in trades_df.itertuples(index=False):
+        have_position[t.EntryBar:t.ExitBar + 1] = 1
+
+    s.loc['Exposure Time [%]'] = have_position.mean() * 100  # In "n bars" time, not index time
+    s.loc['Equity Final [$]'] = equity[-1]
+    s.loc['Equity Peak [$]'] = equity.max()
+    s.loc['Return [%]'] = (equity[-1] - equity[0]) / equity[0] * 100
+    c = combined_ohlc_df.Close.values
+    s.loc['Buy & Hold Return [%]'] = (c[-1] - c[0]) / c[0] * 100  # long-only return
+
+    gmean_day_return: float = 0
+    day_returns = np.array(np.nan)
+    annual_trading_days = np.nan
+    is_datetime_index = isinstance(index, pd.DatetimeIndex)
+    if is_datetime_index:
+        day_returns = equity_df['Equity'].resample('D').last().dropna().pct_change()
+        gmean_day_return = geometric_mean(day_returns)
+        annual_trading_days = float(
+            365 if index.dayofweek.to_series().between(5, 6).mean() > 2/7 * .6 else
+            252)
+
+    annualized_return = (1 + gmean_day_return)**annual_trading_days - 1
+    s.loc['Return (Ann.) [%]'] = annualized_return * 100
+    s.loc['Volatility (Ann.) [%]'] = np.sqrt((day_returns.var(ddof=int(bool(day_returns.shape))) + (1 + gmean_day_return)**2)**annual_trading_days - (1 + gmean_day_return)**(2*annual_trading_days)) * 100  # noqa: E501
+    if is_datetime_index:
+        time_in_years = (s.loc['Duration'].days + s.loc['Duration'].seconds / 86400) / annual_trading_days
+        s.loc['CAGR [%]'] = ((s.loc['Equity Final [$]'] / equity[0])**(1/time_in_years) - 1) * 100 if time_in_years else np.nan  # noqa: E501
+    s.loc['Sharpe Ratio'] = (s.loc['Return (Ann.) [%]'] - risk_free_rate * 100) / (s.loc['Volatility (Ann.) [%]'] or np.nan)  # noqa: E501
+    s.loc['Sortino Ratio'] = (annualized_return - risk_free_rate) / (np.sqrt(np.mean(day_returns.clip(-np.inf, 0)**2)) * np.sqrt(annual_trading_days))  # noqa: E501
+    max_dd = -np.nan_to_num(dd.max())
+    s.loc['Calmar Ratio'] = annualized_return / (-max_dd or np.nan)
+    s.loc['Max. Drawdown [%]'] = max_dd * 100
+    s.loc['Avg. Drawdown [%]'] = -dd_peaks.mean() * 100
+    s.loc['Max. Drawdown Duration'] = _round_timedelta(dd_dur.max())
+    s.loc['Avg. Drawdown Duration'] = _round_timedelta(dd_dur.mean())
+    s.loc['# Trades'] = n_trades = len(trades_df)
+    win_rate = np.nan if not n_trades else (pl > 0).mean()
+    s.loc['Win Rate [%]'] = win_rate * 100
+    s.loc['Best Trade [%]'] = returns.max() * 100
+    s.loc['Worst Trade [%]'] = returns.min() * 100
+    mean_return = geometric_mean(returns)
+    s.loc['Avg. Trade [%]'] = mean_return * 100
+    s.loc['Max. Trade Duration'] = _round_timedelta(durations.max())
+    s.loc['Avg. Trade Duration'] = _round_timedelta(durations.mean())
+    s.loc['Profit Factor'] = returns[returns > 0].sum() / (abs(returns[returns < 0].sum()) or np.nan)  # noqa: E501
+    s.loc['Expectancy [%]'] = returns.mean() * 100
+    s.loc['SQN'] = np.sqrt(n_trades) * pl.mean() / (pl.std() or np.nan)
+    s.loc['Kelly Criterion'] = win_rate - (1 - win_rate) / (pl[pl > 0].mean() / -pl[pl < 0].mean())
+    #
+    s.loc['_strategy'] = strategy_instance
+    s.loc['_equity_curve'] = equity_df
+    s.loc['_trades'] = trades_df
+
+    s = _Stats(s)
+    return s

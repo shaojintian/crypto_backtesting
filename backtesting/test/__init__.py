@@ -18,6 +18,8 @@ GOOG = _read_file('GOOG.csv')
 EURUSD = _read_file('EURUSD.csv')
 """DataFrame of hourly EUR/USD forex data from April 2017 to February 2018."""
 
+_1INCHUSD = _read_file('1INCHUSDT-3m-2024-11.csv')
+_1000cheems = _read_file('1000CHEEMSUSDT-3m-2024-11.csv')
 
 def SMA(arr: pd.Series, n: int) -> pd.Series:
     """
