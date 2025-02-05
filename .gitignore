@@ -1,2 +1,3 @@
 venv
 data/futures/*
+__pycache__/

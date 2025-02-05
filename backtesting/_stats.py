@@ -187,7 +187,7 @@ def compute_stats_v2(
         trades: Dict[str, Union[List['Trade'], pd.DataFrame]],
         equity: Dict[str, np.ndarray],
         ohlc_data: Dict[str, pd.DataFrame],
-        strategy_instance: Dict[str, 'Strategy'],
+        strategy_instance: 'Strategy',
         risk_free_rate: float = 0.03,
 ) -> pd.Series:
     combined_trades = []
