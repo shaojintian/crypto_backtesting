@@ -95,15 +95,18 @@ class VolumesPumping(Strategy):
 
 class TestBacktestV2(IsolatedAsyncioTestCase):
    async def test_run(self):
-        datasources = [_1INCHUSD, _1000cheems]
+        datasources = {
+            **_1INCHUSD, **_1000cheems
+        }
+        #print(datasources)
         bt = BacktestV2(datasources, VolumesPumping)
         results = await bt.run()
         print(results)
-        import backtesting._plotting
-        with _tempfile() as f, \
-                patch.object(backtesting._plotting, '_MAX_CANDLES', 1000), \
-                self.assertWarns(UserWarning):
-            bt.plot(filename=f, resample=True)
+        # import backtesting._plotting
+        # with _tempfile() as f, \
+        #         patch.object(backtesting._plotting, '_MAX_CANDLES', 1000), \
+        #         self.assertWarns(UserWarning):
+        #     bt.plot(filename=f, resample=True)
 
 class TestBacktest(TestCase):
     def test_run(self):

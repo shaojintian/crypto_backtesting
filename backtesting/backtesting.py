@@ -36,7 +36,7 @@ except ImportError:
         return seq
 
 from ._plotting import plot  # noqa: I001
-from ._stats import compute_stats
+from ._stats import compute_stats,compute_stats_v2
 from ._util import _as_str, _Indicator, _Data, try_
 
 __pdoc__ = {
@@ -1731,7 +1731,7 @@ class BacktestV2:
     or `Backtest.optimize` to optimize it.
     """
     def __init__(self,
-                 data_sources: List[pd.DataFrame],
+                 data_sources: Dict[str,pd.DataFrame],
                  strategy: Type[Strategy],
                  *,
                  cash: float = 10_000,
@@ -1855,19 +1855,115 @@ class BacktestV2:
         # Return results (this is a placeholder, actual implementation may vary)
         # return _results
 
-    async def run(self, **kwargs) -> pd.DataFrame:
+    async def run_v2(self, **kwargs) -> pd.DataFrame:
         """
         Run backtest on all data sources concurrently.
         """
         tasks = [self._run_backtest(data,**kwargs) for data in self._data_sources]
         results = await asyncio.gather(*tasks)
         #TODO
-        self._results = compute_stats(
+        # self._results = compute_stats_v2(
+        #         trades=self._broker.closed_trades,
+        #         equity=self.equity,
+        #         ohlc_data=data,
+        #         strategy_instance=strategy_instance,
+        # )# Concatenate results from all data sources
+        return self._results
+    
+    async def run(self, **kwargs) -> pd.DataFrame:  
+         # 1. Validate data
+        for symbol, data in self._data_sources.items():
+            if not isinstance(data, pd.DataFrame):
+                raise TypeError(f"Data for {symbol} must be DataFrame")
+            if len(data.columns.intersection({'Open', 'High', 'Low', 'Close', 'Volume'})) != 5:
+                raise ValueError(f"Missing columns for {symbol}")
+            if data[['Open', 'High', 'Low', 'Close']].isnull().values.any():
+                raise ValueError(f"Missing values in {symbol}")
+
+        # 2. Initialize data objects
+        data_objects = {
+            symbol: _Data(df.copy(deep=False))
+            for symbol, df in self._data_sources.items()
+        }
+
+        # 3. Create multi-symbol broker
+        broker = _Broker(
+            data=data_objects,                    # Now accepts dict of data feeds
+            cash=self._cash,
+            spread=self._spread,
+            commission=self._commission,
+            margin=self._margin,
+            trade_on_close=self._trade_on_close,
+            hedging=self._hedging,
+            exclusive_orders=self._exclusive_orders,
+            index=next(iter(self._data_sources.values())).index  # Use first symbol's index
+        )
+
+        # 4. Initialize strategy with multi-symbol support
+        strategy_instance = self._strategy(
+            broker=broker,
+            data=data_objects,
+            params=kwargs
+        )
+        strategy_instance.init()
+
+        # 5. Get indicators (now potentially per symbol)
+        indicator_attrs = {
+            attr: indicator
+            for attr, indicator in strategy_instance.__dict__.items()
+            if isinstance(indicator, _Indicator)
+        }.items()
+
+        # 6. Calculate warmup across all symbols
+        start = 1 + max(
+            (np.isnan(indicator.astype(float)).argmin(axis=-1).max()
+            for _, indicator in indicator_attrs),
+            default=0
+        )
+
+        # 7. Main loop
+        with np.errstate(invalid='ignore'):
+            min_length = min(len(data) for data in data_objects.values())
+            
+            for i in range(start, min_length):
+                # Update all data feeds
+                for data in data_objects.values():
+                    data._set_length(i + 1)
+                
+                # Update indicators
+                for attr, indicator in indicator_attrs:
+                    setattr(strategy_instance, attr, indicator[..., :i + 1])
+
+                # Process orders for all symbols
+                try:
+                    broker.next()
+                except _OutOfMoneyError:
+                    break
+
+                # Run strategy
+                strategy_instance.next()
+
+            # 8. Cleanup
+            else:
+                for trades in broker.trades.values():
+                    for trade in trades:
+                        trade.close()
+
+                if start < min_length:
+                    try_(broker.next, exception=_OutOfMoneyError)
+
+            # Reset data lengths
+            for data in data_objects.values():
+                data._set_length(len(data))
+
+        # 9. Compute stats for each symbol and portfolio
+        self._results = compute_stats_v2(
                 trades=self._broker.closed_trades,
                 equity=self.equity,
                 ohlc_data=data,
                 strategy_instance=strategy_instance,
         )# Concatenate results from all data sources
+        
         return self._results
 
     async def optimize(self):
