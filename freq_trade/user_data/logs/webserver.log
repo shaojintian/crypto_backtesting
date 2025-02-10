@@ -1,0 +1,289 @@
+2025-02-10 12:38:02,303 - freqtrade.loggers - INFO - Verbosity set to 0
+2025-02-10 12:38:02,651 - freqtrade.configuration.configuration - INFO - Using user-data directory: /freqtrade/user_data ...
+2025-02-10 12:38:02,652 - freqtrade.configuration.configuration - INFO - Using data directory: /freqtrade/user_data/data/binance ...
+2025-02-10 12:38:02,652 - freqtrade.exchange.check_exchange - INFO - Checking exchange...
+2025-02-10 12:38:02,657 - freqtrade.exchange.check_exchange - INFO - Exchange "binance" is officially supported by the Freqtrade development team.
+2025-02-10 12:38:02,658 - freqtrade.configuration.configuration - INFO - Using pairlist from configuration.
+2025-02-10 12:38:02,658 - freqtrade.configuration.config_validation - INFO - Validating configuration ...
+2025-02-10 12:38:02,753 - freqtrade.rpc.api_server.webserver - INFO - Starting HTTP Server at 0.0.0.0:8080
+2025-02-10 12:38:02,754 - freqtrade.rpc.api_server.webserver - INFO - Starting Local Rest Server.
+2025-02-10 12:38:02,760 - uvicorn.error - INFO - Started server process [1]
+2025-02-10 12:38:02,760 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-10 12:38:02,761 - uvicorn.error - INFO - Application startup complete.
+2025-02-10 12:38:02,763 - uvicorn.error - INFO - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2025-02-10 12:44:18,411 - uvicorn.error - INFO - Shutting down
+2025-02-10 12:44:18,522 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-02-10 12:44:18,523 - uvicorn.error - INFO - Application shutdown complete.
+2025-02-10 12:44:18,524 - uvicorn.error - INFO - Finished server process [1]
+2025-02-10 12:44:19,985 - freqtrade.loggers - INFO - Verbosity set to 0
+2025-02-10 12:44:20,328 - freqtrade.configuration.configuration - INFO - Using user-data directory: /freqtrade/user_data ...
+2025-02-10 12:44:20,329 - freqtrade.configuration.configuration - INFO - Using data directory: /freqtrade/user_data/data/binance ...
+2025-02-10 12:44:20,330 - freqtrade.exchange.check_exchange - INFO - Checking exchange...
+2025-02-10 12:44:20,335 - freqtrade.exchange.check_exchange - INFO - Exchange "binance" is officially supported by the Freqtrade development team.
+2025-02-10 12:44:20,335 - freqtrade.configuration.configuration - INFO - Using pairlist from configuration.
+2025-02-10 12:44:20,336 - freqtrade.configuration.config_validation - INFO - Validating configuration ...
+2025-02-10 12:44:20,420 - freqtrade.rpc.api_server.webserver - INFO - Starting HTTP Server at 0.0.0.0:8080
+2025-02-10 12:44:20,421 - freqtrade.rpc.api_server.webserver - INFO - Starting Local Rest Server.
+2025-02-10 12:44:20,427 - uvicorn.error - INFO - Started server process [1]
+2025-02-10 12:44:20,428 - uvicorn.error - INFO - Waiting for application startup.
+2025-02-10 12:44:20,428 - uvicorn.error - INFO - Application startup complete.
+2025-02-10 12:44:20,429 - uvicorn.error - INFO - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2025-02-10 12:44:30,503 - uvicorn.error - WARNING - Invalid HTTP request received.
+2025-02-10 12:44:30,507 - uvicorn.error - WARNING - Invalid HTTP request received.
+2025-02-10 12:44:41,712 - uvicorn.error - WARNING - Invalid HTTP request received.
+2025-02-10 12:44:41,716 - uvicorn.error - WARNING - Invalid HTTP request received.
+2025-02-10 12:45:04,783 - freqtrade.rpc.api_server.webserver - ERROR - API Error calling: Bot is not in the correct state
+2025-02-10 12:45:04,871 - freqtrade.rpc.api_server.webserver - ERROR - API Error calling: Bot is not in the correct state
+2025-02-10 12:45:04,872 - freqtrade.rpc.api_server.webserver - ERROR - API Error calling: Bot is not in the correct state
+2025-02-10 12:45:04,880 - freqtrade.rpc.api_server.webserver - ERROR - API Error calling: Bot is not in the correct state
+2025-02-10 12:45:04,882 - freqtrade.rpc.api_server.webserver - ERROR - API Error calling: Bot is not in the correct state
+2025-02-10 12:46:09,840 - freqtrade.data.btanalysis - INFO - Loading backtest result from /freqtrade/user_data/backtest_results/backtest-result-2025-02-10_10-14-34.zip
+2025-02-10 12:46:09,871 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 12:46:09,872 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 12:50:29,327 - freqtrade.exchange.exchange - INFO - Instance is running with dry_run enabled
+2025-02-10 12:50:29,330 - freqtrade.exchange.exchange - INFO - Using CCXT 4.4.50
+2025-02-10 12:50:29,331 - freqtrade.exchange.exchange - INFO - Applying additional ccxt config: {'options': {'defaultType': 'swap'}}
+2025-02-10 12:50:29,340 - freqtrade.exchange.exchange - INFO - Applying additional ccxt config: {'options': {'defaultType': 'swap'}}
+2025-02-10 12:50:29,348 - freqtrade.exchange.exchange - INFO - Using Exchange "Binance"
+2025-02-10 12:50:29,348 - freqtrade.resolvers.exchange_resolver - INFO - Using resolved exchange 'Binance'...
+2025-02-10 12:50:29,356 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 12:50:29,356 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 12:50:29,357 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 12:50:29,357 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 12:50:29,357 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 12:50:29,357 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 12:50:29,358 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 12:50:29,358 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 12:50:29,358 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 12:50:29,358 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 12:50:29,359 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 12:50:29,359 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 12:50:29,359 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 12:50:29,360 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 12:50:29,360 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 12:50:29,360 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 12:50:29,361 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 12:50:29,361 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 12:50:29,361 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 12:50:29,361 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 12:50:29,362 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 12:50:29,362 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 12:50:29,362 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 12:50:29,363 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 12:50:29,363 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 12:50:29,363 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 12:50:29,363 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 12:50:29,364 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 12:50:29,364 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 12:50:29,364 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 12:50:29,384 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 12:50:29,384 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 12:50:29,385 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 12:50:29,385 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+2025-02-10 12:50:36,407 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 12:50:36,408 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 12:50:36,408 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 12:50:36,409 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 12:50:36,409 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 12:50:36,410 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 12:50:36,411 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 12:50:36,411 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 12:50:36,412 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 12:50:36,412 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 12:50:36,413 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 12:50:36,413 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 12:50:36,413 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 12:50:36,413 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 12:50:36,414 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 12:50:36,414 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 12:50:36,415 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 12:50:36,415 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 12:50:36,415 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 12:50:36,416 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 12:50:36,416 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 12:50:36,417 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 12:50:36,417 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 12:50:36,417 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 12:50:36,418 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 12:50:36,418 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 12:50:36,418 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 12:50:36,419 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 12:50:36,419 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 12:50:36,420 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 12:50:36,437 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 12:50:36,438 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 12:50:36,438 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 12:50:36,439 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+2025-02-10 12:52:29,750 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 12:52:29,753 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 12:52:29,753 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 12:52:29,754 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 12:52:29,755 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 12:52:29,755 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 12:52:29,756 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 12:52:29,756 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 12:52:29,757 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 12:52:29,757 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 12:52:29,757 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 12:52:29,758 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 12:52:29,758 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 12:52:29,758 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 12:52:29,759 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 12:52:29,759 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 12:52:29,759 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 12:52:29,759 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 12:52:29,760 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 12:52:29,760 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 12:52:29,760 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 12:52:29,761 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 12:52:29,761 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 12:52:29,761 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 12:52:29,762 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 12:52:29,762 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 12:52:29,762 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 12:52:29,763 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 12:52:29,763 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 12:52:29,763 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 12:52:29,790 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 12:52:29,791 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 12:52:29,791 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 12:52:29,791 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+2025-02-10 12:53:43,970 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 12:53:43,973 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 12:53:43,974 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 12:53:43,975 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 12:53:43,975 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 12:53:43,976 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 12:53:43,977 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 12:53:43,977 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 12:53:43,977 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 12:53:43,978 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 12:53:43,978 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 12:53:43,978 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 12:53:43,979 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 12:53:43,979 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 12:53:43,980 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 12:53:43,980 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 12:53:43,980 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 12:53:43,981 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 12:53:43,981 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 12:53:43,981 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 12:53:43,982 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 12:53:43,982 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 12:53:43,982 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 12:53:43,983 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 12:53:43,983 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 12:53:43,983 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 12:53:43,984 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 12:53:43,984 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 12:53:43,984 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 12:53:43,985 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 12:53:44,018 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 12:53:44,019 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 12:53:44,019 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 12:53:44,019 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+2025-02-10 12:55:05,665 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 12:55:05,668 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 12:55:05,670 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 12:55:05,670 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 12:55:05,671 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 12:55:05,671 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 12:55:05,672 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 12:55:05,672 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 12:55:05,672 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 12:55:05,673 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 12:55:05,673 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 12:55:05,673 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 12:55:05,674 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 12:55:05,674 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 12:55:05,674 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 12:55:05,675 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 12:55:05,679 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 12:55:05,679 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 12:55:05,679 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 12:55:05,680 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 12:55:05,680 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 12:55:05,681 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 12:55:05,681 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 12:55:05,682 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 12:55:05,682 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 12:55:05,683 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 12:55:05,683 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 12:55:05,683 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 12:55:05,684 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 12:55:05,684 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 12:55:05,714 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 12:55:05,715 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 12:55:05,715 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 12:55:05,715 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+2025-02-10 13:12:17,483 - freqtrade.data.btanalysis - INFO - Loading backtest result from /freqtrade/user_data/backtest_results/backtest-result-2025-02-10_13-10-59.zip
+2025-02-10 13:12:17,516 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 13:12:17,516 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 13:12:34,399 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 13:12:34,400 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 13:12:34,401 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 13:12:34,401 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 13:12:34,401 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 13:12:34,402 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 13:12:34,402 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 13:12:34,402 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 13:12:34,403 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 13:12:34,403 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 13:12:34,403 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 13:12:34,404 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 13:12:34,404 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 13:12:34,405 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 13:12:34,405 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 13:12:34,407 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 13:12:34,407 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 13:12:34,407 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 13:12:34,408 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 13:12:34,408 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 13:12:34,409 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 13:12:34,409 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 13:12:34,409 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 13:12:34,409 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 13:12:34,410 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 13:12:34,410 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 13:12:34,410 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 13:12:34,411 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 13:12:34,411 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 13:12:34,411 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 13:12:34,435 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 13:12:34,435 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 13:12:34,436 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 13:12:34,436 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+2025-02-10 13:13:12,935 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy VolumePumpStrategy from '/freqtrade/user_data/strategies/volume_pump_strategy.py'...
+2025-02-10 13:13:12,937 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2025-02-10 13:13:12,938 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 3m.
+2025-02-10 13:13:12,939 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2025-02-10 13:13:12,939 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: 10000.
+2025-02-10 13:13:12,940 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2025-02-10 13:13:12,940 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: inf.
+2025-02-10 13:13:12,940 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {}
+2025-02-10 13:13:12,941 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 3m
+2025-02-10 13:13:12,941 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.01
+2025-02-10 13:13:12,942 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2025-02-10 13:13:12,942 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2025-02-10 13:13:12,943 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2025-02-10 13:13:12,943 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2025-02-10 13:13:12,943 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2025-02-10 13:13:12,944 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'limit', 'stoploss': 'limit', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2025-02-10 13:13:12,944 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2025-02-10 13:13:12,945 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2025-02-10 13:13:12,945 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: 10000
+2025-02-10 13:13:12,945 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 0
+2025-02-10 13:13:12,946 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 10, 'exit': 10, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2025-02-10 13:13:12,946 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2025-02-10 13:13:12,946 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2025-02-10 13:13:12,947 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2025-02-10 13:13:12,947 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2025-02-10 13:13:12,947 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2025-02-10 13:13:12,948 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 0
+2025-02-10 13:13:12,948 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2025-02-10 13:13:12,949 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2025-02-10 13:13:12,949 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: inf
+2025-02-10 13:13:12,973 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2025-02-10 13:13:12,974 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): volume_multiplier = 50
+2025-02-10 13:13:12,974 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2025-02-10 13:13:12,974 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.

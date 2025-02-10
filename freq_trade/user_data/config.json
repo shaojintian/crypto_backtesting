@@ -39,9 +39,11 @@
         "ccxt_config": {},
         "ccxt_async_config": {},
         "pair_whitelist": [
-            "BTC/USDT:USDT"
+            ".*/USDT:USDT"
         ],
         "pair_blacklist": [
+            "BERA/USDT:USDT", 
+            "TST/USDT:USDT"
         ]
     },
     "datadir": "/Users/shaoenzo/Documents/GitHub/crypto_backtesting/freq_trade/user_data/data/binance/futures",
@@ -60,10 +62,10 @@
         "listen_ip_address": "0.0.0.0",
         "listen_port": 8080,
         "verbosity": "error",
-        "enable_openapi": false,
+        "enable_openapi": true,
         "jwt_secret_key": "9c148750f6b148ff9b814d093a758a6abae711a34aff321274fc9d12c3ef0d82",
         "ws_token": "wjbuHnsGrN34t7K6-1DQsY5hSKOanXdtoA",
-        "CORS_origins": [],
+        "CORS_origins": ["http://localhost:8080"],
         "username": "freqtrader",
         "password": "123456"
     },

@@ -1,6 +1,6 @@
 ---
 services:
-  freqtrade:
+  freqtrade-trade:
     image: freqtradeorg/freqtrade:stable
     # image: freqtradeorg/freqtrade:develop
     # Use plotting image
@@ -33,4 +33,16 @@ services:
       --logfile /freqtrade/user_data/logs/freqtrade.log
       --db-url sqlite:////freqtrade/user_data/tradesv3.sqlite
       --config /freqtrade/user_data/config.json
-      --strategy SampleStrategy
+      --strategy VolumePumpStrategy
+    
+  freqtrade-webserver:
+    image: freqtradeorg/freqtrade:stable
+    container_name: freqtrade-webserver
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - "./user_data:/freqtrade/user_data"
+    command: >
+      webserver
+      --config /freqtrade/user_data/config.json
+      --logfile /freqtrade/user_data/logs/webserver.log
