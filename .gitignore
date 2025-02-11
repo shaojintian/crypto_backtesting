@@ -1,3 +1,18 @@
 venv
 data/futures/*
 __pycache__/
+
+# Log files
+**/*.log
+
+# SQLite databases
+**/*.sqlite
+**/*.db
+
+# Archives
+**/*.zip
+
+# Other common files to ignore
+**/*.pyc
+**/*.pkl
+**/.DS_Store

@@ -1,14 +1,14 @@
 
 {
     "$schema": "https://schema.freqtrade.io/schema.json",
-    "max_open_trades": -1,
+    "max_open_trades": 1,
     "stake_currency": "USDT",
-    "stake_amount": 10000,
+    "stake_amount": "unlimited",
     "tradable_balance_ratio": 0.99,
     "fiat_display_currency": "USD",
-    "dry_run": true,
-    "dry_run_wallet": 20000,
-    "cancel_open_orders_on_exit": false,
+    "dry_run": false,
+    "dry_run_wallet": 0,
+    "cancel_open_orders_on_exit": true,
     "trading_mode": "futures",
     "margin_mode": "isolated",
     "unfilledtimeout": {
@@ -34,16 +34,16 @@
     },
     "exchange": {
         "name": "binance",
-        "key": "",
-        "secret": "",
-        "ccxt_config": {},
+        "key": "tV5ASDFTOyJtq33fVZt3iOQBr7E7jEj7niIspxXLJap3cpyUdpNQLbhkWqPcVteM",
+        "secret": "PUDiiGOD6BhCsf6KiySISsupWwNGBQK5qRAne3Iv6cpD50Cw50AobCWKRYj7VqDH",
+        "ccxt_config": {
+            "enableRateLimit": true
+        },
         "ccxt_async_config": {},
         "pair_whitelist": [
             ".*/USDT:USDT"
         ],
         "pair_blacklist": [
-            "BERA/USDT:USDT", 
-            "TST/USDT:USDT"
         ]
     },
     "datadir": "/Users/shaoenzo/Documents/GitHub/crypto_backtesting/freq_trade/user_data/data/binance/futures",
@@ -53,7 +53,7 @@
         }
     ],
     "telegram": {
-        "enabled": false,
+        "enabled": true,
         "token": "",
         "chat_id": ""
     },
