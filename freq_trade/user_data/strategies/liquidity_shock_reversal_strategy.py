@@ -2,11 +2,13 @@
 # flake8: noqa: F401
 # isort: skip_file
 # --- Do not remove these imports ---
+import logging
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta, timezone
 from pandas import DataFrame
 from typing import Optional, Union
+logger = logging.getLogger(__name__)
 from freqtrade.strategy import (
     IStrategy,
     Trade,
@@ -41,18 +43,24 @@ class LiquidityShockReversalStrategy(IStrategy):
     stoploss = -0.01
     # Liquidity Parameters
     vol_shock_mult = DecimalParameter(2.0, 5.0, default=3.0, space='buy')
-    price_impact = DecimalParameter(0.005, 0.05, default=0.02, space='buy')
+    price_impact = DecimalParameter(0.005, 0.05, default=1e-7, space='buy')
     window_size = IntParameter(3, 10, default=5, space='buy')
+
+    can_short = True
+
+    
     
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         # Volume Shock Detection
         dataframe['volume_ma'] = dataframe['volume'].rolling(window=self.window_size.value).mean()
         dataframe['volume_ratio'] = dataframe['volume'] / dataframe['volume_ma']
+        dataframe['volume_shares'] = dataframe['volume']*dataframe['close']
         
         # Price Impact
         dataframe['returns'] = dataframe['close'].pct_change()
         dataframe['price_impact'] = dataframe['returns'].abs() / (dataframe['volume'] * dataframe['close'])
-        
+        #logger.info(dataframe['price_impact'])
+
         # Liquidity Shock Score
         dataframe['shock_score'] = (
             (dataframe['volume_ratio'] > self.vol_shock_mult.value) & 
@@ -72,9 +80,10 @@ class LiquidityShockReversalStrategy(IStrategy):
         dataframe.loc[
             (
                 dataframe['reversal_signal'] &
-                (dataframe['volume'] > 0)
+                (dataframe['volume'] > 0) &
+                ( dataframe['volume_shares'] > 100_0000)
             ),
-            'enter_long'
+            'enter_short'
         ] = 1
         
         return dataframe
@@ -85,7 +94,7 @@ class LiquidityShockReversalStrategy(IStrategy):
                 (dataframe['future_return'] > self.price_impact.value) |
                 (dataframe['volume_ratio'] < 1.0)
             ),
-            'exit_long'
+            'exit_short'
         ] = 1
         
         return dataframe

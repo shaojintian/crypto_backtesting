@@ -33,15 +33,23 @@ from freqtrade.strategy import (
 
 class VolumePumpStrategy(IStrategy):
     INTERFACE_VERSION = 3
-    timeframe = "1m"
+    timeframe = "3m"
 
     # 0.5%
     stoploss = -0.010
 
     max_volume_ratio = 0.25  # 25% of volume
 
-
+    can_short = True
     use_custom_stoploss: bool = False
+
+    trailing_stop: bool = True
+    trailing_stop_positive: float | None = 0.03
+    trailing_stop_positive_offset: float = 0.0
+    trailing_only_offset_is_reached = False
+
+
+
     def custom_stoploss(
         self,
         pair: str,
@@ -129,6 +137,7 @@ class VolumePumpStrategy(IStrategy):
         
         # Calculate volume ratio
         dataframe['volume_ratio'] = dataframe['volume'] / dataframe['volume_mean']
+        dataframe['volume_shares'] = dataframe['volume']*dataframe['close']
 
         # Price change percentage
         dataframe['price_pct'] = dataframe['close'].pct_change() * 100
@@ -142,23 +151,43 @@ class VolumePumpStrategy(IStrategy):
                 # Volume is X times higher than average
                 (dataframe['volume_ratio'] > self.volume_multiplier.value) &
                 # Make sure we have enough data
-                (dataframe['volume'] > 0) &
+                ( dataframe['volume_shares'] > 10_0000) &
                 (dataframe['volume_mean'] > 0) & 
                 (dataframe['price_pct'] > 0)
             ),
             'enter_long'
         ] = 1
+
+        # dataframe.loc[
+        #     (
+        #         # Volume is X times higher than average
+        #         (dataframe['volume_ratio'] > self.volume_multiplier.value) &
+        #         # Make sure we have enough data
+        #         ( dataframe['volume_shares'] > 10_0000) &
+        #         (dataframe['volume_mean'] > 0) & 
+        #         (dataframe['price_pct'] < 0)
+        #     ),
+        #     'enter_short'
+        # ] = 1
         
         return dataframe
     
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         """Exit when volume normalizes"""
-        dataframe.loc[
-            (
-                # Volume back to normal
-                (dataframe['volume_ratio'] < self.volume_multiplier.value/2)
-            ),
-            'exit_long'
-        ] = 1
+        # dataframe.loc[
+        #     (
+        #         # Volume back to normal
+        #         (dataframe['volume_ratio'] < self.volume_multiplier.value/2)
+        #     ),
+        #     'exit_long'
+        # ] = 1
+
+        # dataframe.loc[
+        #     (
+        #         # Volume back to normal
+        #         (dataframe['volume_ratio'] < self.volume_multiplier.value/2)
+        #     ),
+        #     'exit_short'
+        # ] = 1
         
         return dataframe
